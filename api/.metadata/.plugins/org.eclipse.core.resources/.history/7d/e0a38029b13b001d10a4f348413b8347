@@ -1,0 +1,5 @@
+package com.example.compass.api.modelo;
+
+public class Usuarios {
+
+}

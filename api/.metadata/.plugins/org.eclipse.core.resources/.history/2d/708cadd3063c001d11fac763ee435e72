@@ -1,0 +1,13 @@
+package com.example.compass.api.v1.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.compass.api.v1.modelo.Estados;
+import com.example.compass.api.v1.modelo.Usuarios;
+
+public interface UsuariosRepository extends JpaRepository<Usuarios, Long>{
+
+	List<Estados> findByCursoNome(String nomeEstado);
+}

@@ -1,0 +1,11 @@
+package com.example.compass.api.v1.modelo;
+
+public class Estados {
+
+	private Long id;
+	private String nome;
+	private String regiao;
+	private int populacao;
+	private String capital;
+	private double area;
+}

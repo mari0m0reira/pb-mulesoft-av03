@@ -1,0 +1,19 @@
+package com.example.compass.api.v1.repository;
+
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.compass.api.v1.modelo.Estados;
+import com.example.compass.api.v1.modelo.Regiao;
+
+public interface EstadosRepository extends JpaRepository<Estados, Long>{
+
+	@Query("SELECT e FROM Estados e WHERE e.regiao = :nomeRegiao ORDER BY populacao DESC" )
+	List<Estados> findByRegiao(Regiao nomeRegiao);
+
+	@Query("SELECT e FROM Estados ORDER BY area DESC" )
+	List<Estados> findByMaiorArea();
+	
+	
+}

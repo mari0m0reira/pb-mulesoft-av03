@@ -1,0 +1,16 @@
+package com.example.compass.api.v1.controller.dto;
+
+import com.example.compass.api.v1.modelo.Regiao;
+
+public class EstadosDto {
+
+	private Long id;
+	private String nome;
+	private Regiao regiao;
+	private int populacao;
+	private String capital;
+	private double area;
+	
+	
+
+}

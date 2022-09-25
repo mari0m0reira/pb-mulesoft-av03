@@ -1,0 +1,60 @@
+package com.example.compass.api.controller.dto;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
+
+import com.example.compass.api.modelo.Estados;
+import com.example.compass.api.modelo.Regiao;
+
+public class EstadosDto {
+
+	private Long id;
+	private String nome;
+	private Regiao regiao;
+	private int populacao;
+	private String capital;
+	private int area;
+	
+	public EstadosDto(Estados estados) {
+	
+		//this.id = estados.getId();
+		this.nome = estados.getNome();
+		this.regiao = estados.getRegiao();
+		this.populacao = estados.getPopulacao();
+		this.capital = estados.getCapital();
+		this.area = estados.getArea();
+	}
+
+	//public Long getId() {
+	//	return id;
+	//}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public Regiao getRegiao() {
+		return regiao;
+	}
+
+	public int getPopulacao() {
+		return populacao;
+	}
+
+	public String getCapital() {
+		return capital;
+	}
+
+	public int getArea() {
+		return area;
+	}
+
+	public static Page<EstadosDto> converter(Page<Estados> estados) {
+		return estados.map(EstadosDto::new);
+	}
+	
+	
+
+}

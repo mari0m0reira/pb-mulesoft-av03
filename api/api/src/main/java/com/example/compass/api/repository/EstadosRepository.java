@@ -1,0 +1,13 @@
+package com.example.compass.api.repository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.compass.api.modelo.Estados;
+
+public interface EstadosRepository extends JpaRepository<Estados, Long>{
+
+	Page<Estados> findByRegiao(String nomeRegiao, Pageable paginacao);
+	
+}

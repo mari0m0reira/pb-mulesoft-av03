@@ -1,0 +1,14 @@
+package com.example.compass.api.config.validacao;
+
+public class ValidaRegiao{
+	
+		
+	public boolean validar(String nomeRegiao) {
+		if(nomeRegiao.equals("Norte") || nomeRegiao.equals("Nordeste") || nomeRegiao.equals("Sul") || nomeRegiao.equals("Suldeste") || nomeRegiao.equals("Centro-Oeste")) {
+			System.out.println(nomeRegiao);
+			return true;
+		}			
+		return false;
+	}
+
+}

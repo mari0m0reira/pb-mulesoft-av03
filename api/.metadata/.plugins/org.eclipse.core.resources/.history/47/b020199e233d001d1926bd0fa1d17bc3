@@ -1,0 +1,56 @@
+package com.example.compass.api.controller.form;
+
+import com.example.compass.api.modelo.Estados;
+import com.example.compass.api.repository.EstadosRepository;
+
+public class AtualizacaoEstadosForm {
+
+	private String nome;
+	private String regiao;
+	private int populacao;
+	private String capital;
+	private int area;
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getRegiao() {
+		return regiao;
+	}
+	public void setRegiao(String regiao) {
+		this.regiao = regiao;
+	}
+	public int getPopulacao() {
+		return populacao;
+	}
+	public void setPopulacao(int populacao) {
+		this.populacao = populacao;
+	}
+	public String getCapital() {
+		return capital;
+	}
+	public void setCapital(String capital) {
+		this.capital = capital;
+	}
+	public int getArea() {
+		return area;
+	}
+	public void setArea(int area) {
+		this.area = area;
+	}
+	public Estados atualizar(Long id, EstadosRepository estadosRepository) {
+		Estados estados = estadosRepository.getOne(id);
+		estados.setNome(this.nome);
+		estados.setRegiao(this.regiao);
+		estados.setPopulacao(this.populacao);
+		estados.setCapital(this.capital);
+		estados.setArea(this.area);
+		
+		return estados;
+	}
+	
+	
+}
