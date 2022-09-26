@@ -1,0 +1,254 @@
+openapi: 3.0.3
+info:
+  title: API PB Mulesoft 2022
+  description: |-
+    API para CRUD de estados.
+  version: 1.0.0
+  contact:
+    name: Suporte
+    email: email@teste.com.br
+    url: https://github.com/mari0m0reira/pb-mulesoft-av03
+servers:
+- url: http://localhost:8080/
+paths:
+  /api/v1/estados:
+    get:
+      summary: Lista todos estados cadastrados
+      responses:
+        200:
+          description: Sucesso em listar os estados
+          content:
+            application/json:
+              example: "OK"
+              schema:
+                type: array
+                items:
+                  type: object  
+                  properties:
+                    nome:
+                      type: integer
+                    regiao:
+                      type: string
+                    populacao:
+                      type: string
+                    capital:
+                      type: string
+                    area:
+                      type: integer
+    post:
+      summary: Cadastra um estado
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              example: "OK"
+              schema:
+                  type: object  
+                  properties:
+                    nome:
+                      type: integer
+                    regiao:
+                      type: string
+                    populacao:
+                      type: string
+                    capital:
+                      type: string
+                    area:
+                      type: integer
+        400:
+          description: Estado nao cadastrado
+          content:
+            application/json:
+              example: "Bad Request"
+  /api/v1/estados{id}:   
+    get:
+      summary: Recupera um estado pelo ID
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+        required: true
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              example: "OK"
+              schema:
+                  type: object  
+                  properties:
+                    nome:
+                      type: integer
+                    regiao:
+                      type: string
+                    populacao:
+                      type: string
+                    capital:
+                      type: string
+                    area:
+                      type: integer
+        404:
+          description: Estado não encontrado
+          content:
+            application/jason:
+              example: "Not Found"
+    put:
+      summary: Atualiza um estado pelo ID
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+        required: true
+      responses:
+        200:
+          description: Sucesso em atualizar um estado
+          content:
+            application/json:
+              example: "OK"
+              schema:
+                  type: object  
+                  properties:
+                    nome:
+                      type: integer
+                    regiao:
+                      type: string
+                    populacao:
+                      type: string
+                    capital:
+                      type: string
+                    area:
+                      type: integer
+        404:
+          description: Estado não encontrado
+          content:
+            application/jason:
+              example: "Not Found"
+    delete:
+      summary: Deleta um estado pelo ID
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+        required: true
+      responses:
+        200:
+          description: Sucesso em deletar um estado
+          content:
+            application/json:
+              example: "OK"
+              schema:
+                  type: object  
+                  properties:
+                    nome:
+                      type: integer
+                    regiao:
+                      type: string
+                    populacao:
+                      type: string
+                    capital:
+                      type: string
+                    area:
+                      type: integer
+        404:
+          description: Estado não encontrado
+          content:
+            application/jason:
+              example: "Not Found"
+  /api/v1/usuarios:
+    get:
+      summary: Lista todos os usuarios cadastrados
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object  
+                  properties:
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                      type: string
+    post:
+      summary: Cadastra um usuario
+      responses:
+        200:
+          description: Sucesso em cadastrar um usuario
+          content:
+            application/json:
+              example: "OK"
+              schema:
+                  type: object  
+                  properties:
+                    nome:
+                      type: string
+                    usuario:
+                      type: string
+                    senha:
+                      type: string
+        400:
+          description: Usuario nao cadastrado
+          content:
+            application/json:
+              example: "Bad Request"
+  /api/v1/usuarios{id}:
+    put:
+      summary: Atualiza um usuario pelo ID
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+        required: true
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              example: 200 OK
+              schema:
+                  type: object  
+                  properties:
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                      type: string
+        404:
+          description: Usuario não encontrado
+          content:
+            application/jason:
+              example: "Not Found"
+  /api/v1/autenticacao:
+    post:
+      summary: Autentica um usuario
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              example: 200 OK
+              schema:
+                  type: object  
+                  properties:
+                    nome:
+                      type: string
+                    usuario:
+                      type: string
+                    senha:
+                      type: string
+        400:
+          description: Usuario nao autenticado
+          content:
+            application/json:
+              example: "Bad Request"
+  
