@@ -1108,3 +1108,19 @@ org.eclipse.core.runtime.CoreException: Invalid node org.eclipse.epp.internal.mp
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
 !SUBENTRY 1 org.eclipse.epp.mpc.core 4 0 2022-09-26 08:40:24.574
 !MESSAGE Invalid node org.eclipse.epp.internal.mpc.core.model.Node@569e1276: either id or url is required
+
+!ENTRY org.eclipse.equinox.p2.discovery 4 0 2022-09-26 10:09:24.647
+!MESSAGE MarketplaceDiscoveryStrategy failed with an error
+!STACK 1
+org.eclipse.core.runtime.CoreException: Invalid node org.eclipse.epp.internal.mpc.core.model.Node@62b4b4df: either id or url is required
+	at org.eclipse.epp.internal.mpc.core.service.DefaultMarketplaceService.getNodes(DefaultMarketplaceService.java:310)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService.getNodes(CachingMarketplaceService.java:164)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceDiscoveryStrategy.performNodeQuery(MarketplaceDiscoveryStrategy.java:870)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceCatalog.lambda$10(MarketplaceCatalog.java:140)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceCatalog.runDiscoveryOperation(MarketplaceCatalog.java:529)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceCatalog.performDiscovery(MarketplaceCatalog.java:488)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceCatalog.performNodeQuery(MarketplaceCatalog.java:140)
+	at org.eclipse.epp.internal.mpc.ui.wizards.MarketplaceViewer.lambda$6(MarketplaceViewer.java:698)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+!SUBENTRY 1 org.eclipse.epp.mpc.core 4 0 2022-09-26 10:09:24.647
+!MESSAGE Invalid node org.eclipse.epp.internal.mpc.core.model.Node@62b4b4df: either id or url is required
