@@ -1,0 +1,5 @@
+package com.example.compass.api.controller.dto;
+
+public class UsuarioDto {
+
+}

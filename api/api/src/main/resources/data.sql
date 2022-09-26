@@ -1,3 +1,5 @@
+INSERT INTO USUARIO(nome, email, senha) VALUES('Admin', 'admin@email.com', '12345');
+
 INSERT INTO ESTADOS(nome, regiao, populacao, capital, area) VALUES('Acre', 'Norte', 894470, 'Rio Branco', 164123964);
 INSERT INTO ESTADOS(nome, regiao, populacao, capital, area) VALUES('Alagoas', 'Nordeste', 3351543, 'Maceió', 27843295);
 INSERT INTO ESTADOS(nome, regiao, populacao, capital, area) VALUES('Amapá', 'Norte', 861773, 'Macapá', 142470762);

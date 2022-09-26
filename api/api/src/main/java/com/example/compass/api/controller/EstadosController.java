@@ -33,88 +33,85 @@ import com.example.compass.api.repository.EstadosRepository;
 @RestController
 @RequestMapping("api/v1/estados")
 public class EstadosController {
-	
-	@Autowired
-	private EstadosRepository estadosRepository;	
-	
-	
-	//GET
-		@GetMapping
-		public Page<EstadosDto> listar(@RequestParam(required = false) String nomeRegiao,
-				@PageableDefault(sort = {"populacao","area"}, direction = Direction.DESC, page = 0, size = 30) Pageable paginacao){
-				
-			if(nomeRegiao == null) {
-				Page<Estados> estados = estadosRepository.findAll(paginacao);			
-				return EstadosDto.converter(estados);
-			}else if(ValidaRegiao.validar(nomeRegiao)){
-					Page<Estados> estados = estadosRepository.findByRegiao(nomeRegiao, paginacao);					
-					return EstadosDto.converter(estados);
-			}else {
-				Page<Estados> estados = estadosRepository.findAll(paginacao);				
-				return EstadosDto.converter(estados);
 
-			}
+	@Autowired
+	private EstadosRepository estadosRepository;
+
+	// GET
+	@GetMapping
+	public Page<EstadosDto> listar(@RequestParam(required = false) String nomeRegiao, @PageableDefault(sort = {
+			"populacao", "area" }, direction = Direction.DESC, page = 0, size = 30) Pageable paginacao) {
+
+		if (nomeRegiao == null) {
+			Page<Estados> estados = estadosRepository.findAll(paginacao);
+			return EstadosDto.converter(estados);
+		} else if (ValidaRegiao.validar(nomeRegiao)) {
+			Page<Estados> estados = estadosRepository.findByRegiao(nomeRegiao, paginacao);
+			return EstadosDto.converter(estados);
+		} else {
+			Page<Estados> estados = estadosRepository.findAll(paginacao);
+			return EstadosDto.converter(estados);
+
 		}
-		
-	//GET COM ID
+	}
+
+	// GET COM ID
 	@GetMapping("/{id}")
 	public ResponseEntity<EstadosDto> encontrarPorId(@PathVariable Long id) {
 		Optional<Estados> estados = estadosRepository.findById(id);
-		if(estados.isPresent()) {
+		if (estados.isPresent()) {
 			return ResponseEntity.ok(new EstadosDto(estados.get()));
 
-		}else {
+		} else {
 			return ResponseEntity.notFound().build();
-		}		
+		}
 	}
-	
-	
-	//POST
+
+	// POST
 	@PostMapping
 	@Transactional
 	public ResponseEntity<EstadosDto> cadastrar(@RequestBody @Valid EstadosForm form, UriComponentsBuilder uriBuider) {
 		String nomeRegiao = form.getRegiao().toString();
-		if(ValidaRegiao.validar(nomeRegiao) ) {
-			Estados estados = form.converter(); 
-			estadosRepository.save(estados);		
+		if (ValidaRegiao.validar(nomeRegiao)) {
+			Estados estados = form.converter();
+			estadosRepository.save(estados);
 			URI uri = uriBuider.path("api/v1/estados/{id}").buildAndExpand(estados.getId()).toUri();
-			return ResponseEntity.created(uri).body(new EstadosDto(estados));		
-		}else {
-			return ResponseEntity.badRequest().build();			
+			return ResponseEntity.created(uri).body(new EstadosDto(estados));
+		} else {
+			return ResponseEntity.badRequest().build();
 		}
 	}
-
 	
+	//PUT
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<EstadosDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstadosForm form){
+	public ResponseEntity<EstadosDto> atualizar(@PathVariable Long id,
+			@RequestBody @Valid AtualizacaoEstadosForm form) {
 		Optional<Estados> optional = estadosRepository.findById(id);
-		if(optional.isPresent()) {
+		if (optional.isPresent()) {
 			Estados estados = form.atualizar(id, estadosRepository);
-			if(ValidaRegiao.validar(estados.getRegiao())) {
-				return ResponseEntity.ok(new EstadosDto(estados));				
-			}else
-				return ResponseEntity.badRequest().build();		
+			if (ValidaRegiao.validar(estados.getRegiao())) {
+				return ResponseEntity.ok(new EstadosDto(estados));
+			} else
+				return ResponseEntity.badRequest().build();
 
-		}else {
-			return ResponseEntity.notFound().build();
-		}		
-	}
-	
-	
-	//DELETE
-	@DeleteMapping("/{id}")
-	@Transactional
-	public ResponseEntity<?> remover(@PathVariable Long id){
-		Optional<Estados> optional = estadosRepository.findById(id);
-		if(optional.isPresent()) {
-			estadosRepository.deleteById(id);		
-			return ResponseEntity.ok().build();
-
-		}else {
+		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
-		
-	
+
+	// DELETE
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<?> remover(@PathVariable Long id) {
+		Optional<Estados> optional = estadosRepository.findById(id);
+		if (optional.isPresent()) {
+			estadosRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
 }
